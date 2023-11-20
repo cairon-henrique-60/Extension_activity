@@ -6,11 +6,11 @@ export interface IResultIMCProps {
 }
 
 export type Result =
-  | "Abaixo do Peso Ideal"
-  | "Peso Normal"
+  | "Abaixo do peso ideal"
+  | "Peso normal"
   | "Sobrepeso"
   | "Obesidade"
-  | "Obesidade Severa"
-  | "Obesidade Mórbida";
+  | "Obesidade severa"
+  | "Obesidade mórbida";
 
 export type ResultTipsMap = Record<Result, string[]>;

@@ -10,11 +10,11 @@ const ResulOnIMC: React.FC<IResultIMCProps> = ({
   imc,
 }) => {
   const tipsMap: ResultTipsMap = {
-    "Abaixo do Peso Ideal": [
+    "Abaixo do peso ideal": [
       "Priorize refeições nutritivas e calóricas.",
       "Inclua alimentos ricos em proteínas, como carne magra, ovos e legumes.",
     ],
-    "Peso Normal": [
+    "Peso normal": [
       "Mantenha uma dieta equilibrada com variedade de nutrientes.",
       "Pratique exercícios regularmente para manter a saúde geral.",
     ],
@@ -26,11 +26,11 @@ const ResulOnIMC: React.FC<IResultIMCProps> = ({
       "Reduza a ingestão de calorias, especialmente de alimentos processados.",
       "Inicie um programa de exercícios regular, focando em cardio e treinamento de força.",
     ],
-    "Obesidade Severa": [
+    "Obesidade severa": [
       "Consulte um profissional de saúde para um plano personalizado.",
       "Considere apoio psicológico para lidar com questões emocionais relacionadas ao peso.",
     ],
-    "Obesidade Mórbida": [
+    "Obesidade mórbida": [
       "Busque orientação médica imediata.",
       "Trabalhe com uma equipe de saúde para desenvolver um plano abrangente que inclua dieta, exercícios e, possivelmente, intervenções médicas.",
     ],
