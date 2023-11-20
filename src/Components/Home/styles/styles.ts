@@ -64,7 +64,7 @@ export const ContainerResultIMC = styled.div`
   color: #6a5acd;
   font-size: 16px;
   letter-spacing: 5px;
-  h1,
+
   p {
     margin: 10px 0;
     font-weight: 600;
