@@ -29,7 +29,10 @@ export const FormContainer = styled.div`
 
   .ant-row {
     justify-content: center;
-    width: 30vw;
+
+    @media (min-width: 585px) {
+      width: 30vw;
+    }
   }
 
   .ant-form-item-row {
