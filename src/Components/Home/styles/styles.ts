@@ -16,6 +16,10 @@ export const FormContainer = styled.div`
   width: 50vw;
   background-color: #fff;
 
+  @media (max-width: 585px) {
+    width: 100vw;
+  }
+
   h1 {
     color: #6a5acd;
     width: 100%;
