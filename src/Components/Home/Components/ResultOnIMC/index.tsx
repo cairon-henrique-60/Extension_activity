@@ -4,10 +4,10 @@ import { IResultIMCProps, ResultTipsMap } from "../../Types";
 import { ContainerResultIMC } from "../../styles/styles";
 
 const ResulOnIMC: React.FC<IResultIMCProps> = ({
-  isElderly,
   isFemale,
   result,
   imc,
+  age,
 }) => {
   const tipsMap: ResultTipsMap = {
     "Abaixo do peso ideal": [
@@ -38,24 +38,30 @@ const ResulOnIMC: React.FC<IResultIMCProps> = ({
 
   const dicas = (tipsMap[result as keyof ResultTipsMap] || []) as string[];
 
+  const getFaixaEtaria = (idade: number): string => {
+    if (idade < 13) return "Criança";
+    if (idade < 18) return "Adolescente";
+    if (idade < 60) return "Adulto";
+    return "Idoso";
+  };
+
   return (
-    <>
-      <ContainerResultIMC>
-        <div>
-          <p>Sexo: {isFemale ? "Feminino" : "Masculino"}</p>
-          <p>Idoso: {isElderly ? "Sim" : "Não"}</p>
-          <p>IMC: {imc}</p>
-          <p>Resultado: {result}</p>
-        </div>
-        <br />
-        <div>
-          <p>Dicas:</p>
-          {dicas.map((dica, index) => (
-            <p key={index}>{dica}</p>
-          ))}
-        </div>
-      </ContainerResultIMC>
-    </>
+    <ContainerResultIMC>
+      <div>
+        <p>Idade: {age} anos</p>
+        <p>Faixa etária: {getFaixaEtaria(age)}</p>
+        <p>Sexo: {isFemale ? "Feminino" : "Masculino"}</p>
+        <p>IMC: {imc}</p>
+        <p>Resultado: {result}</p>
+      </div>
+      <br />
+      <div>
+        <p>Dicas:</p>
+        {dicas.map((dica, index) => (
+          <p key={index}>{dica}</p>
+        ))}
+      </div>
+    </ContainerResultIMC>
   );
 };
 

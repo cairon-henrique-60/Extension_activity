@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form } from "antd";
 
 import { printResultIMC } from "../Util";
@@ -9,13 +9,18 @@ export const useHoomeHooks = () => {
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isElderly, setIsElderly] = useState<boolean>(false);
-  const [isFemale, setisFemale] = useState<boolean>(false);
+  const [isFemale, setIsFemale] = useState<boolean>(false);
   const [isMale, setIsMale] = useState<boolean>(false);
+
+  const [ageInput, setAgeInput] = useState<number>(0);
 
   const [imc, setImc] = useState<number>(0);
 
-  const calculeImmc = (params: { weight: number; height: number }): void => {
-    const { weight, height } = params;
+  const calculeImmc = (params: { weight: number; height: number, age: number }): void => {
+    const { weight, height, age } = params;
+  
+    setAgeInput(age);
+  
     const result = (weight / Math.pow(height, 2)).toFixed(2);
     setImc(+result);
     handleOpenModal(true);
@@ -23,11 +28,24 @@ export const useHoomeHooks = () => {
 
   const resultCalcImc = printResultIMC(imc, isFemale, isElderly);
 
+  useEffect(() => {
+    const age = form.getFieldValue("age");
+    if (age >= 60) {
+      setIsElderly(true);
+    } else {
+      setIsElderly(false);
+    }
+  }, [form]);
+
   const handleFormChange = (): void => {
-    const { weight, height } = form.getFieldsValue();
-    if (weight && height && (isFemale || isMale)) {
+    const { weight, height, age } = form.getFieldsValue();
+    if (
+      weight > 0 &&
+      height > 0 &&
+      age > 0 &&
+      (isFemale || isMale)
+    ) {
       setSubmitDisabled(false);
-      console.log(imc);
     } else {
       setSubmitDisabled(true);
     }
@@ -38,15 +56,12 @@ export const useHoomeHooks = () => {
   const handleCheckboxChange = (type: string): void => {
     switch (type) {
       case "female":
-        setisFemale(!isFemale);
+        setIsFemale(!isFemale);
         setIsMale(false);
         break;
       case "male":
         setIsMale(!isMale);
-        setisFemale(false);
-        break;
-      case "elderly":
-        setIsElderly(!isElderly);
+        setIsFemale(false);
         break;
       default:
         break;
@@ -59,6 +74,7 @@ export const useHoomeHooks = () => {
     isOpenModal,
     isElderly,
     isFemale,
+    ageInput,
     isMale,
     form,
     imc,

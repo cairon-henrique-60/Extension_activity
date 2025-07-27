@@ -16,8 +16,8 @@ const Home: React.FC = () => {
     submitDisabled,
     resultCalcImc,
     isOpenModal,
-    isElderly,
     isFemale,
+    ageInput,
     isMale,
     form,
     imc,
@@ -74,6 +74,19 @@ const Home: React.FC = () => {
                 />
               </Form.Item>
 
+              <Form.Item
+                label="Idade"
+                name="age"
+                rules={[{ required: true, message: "Somente números!" }]}
+              >
+                <Input
+                  type="number"
+                  placeholder="Digite sua idade"
+                  min={1}
+                  prefix={<UserOutlined style={{ color: "#6a5acd" }} />}
+                />
+              </Form.Item>
+
               <Form.Item name="isFemale" rules={[{ required: true }]}>
                 <Checkbox.Group>
                   <Checkbox
@@ -95,14 +108,6 @@ const Home: React.FC = () => {
                     onChange={() => handleCheckboxChange("male")}
                   >
                     Homem
-                  </Checkbox>
-                  <Checkbox
-                    value="elderly"
-                    checked={isElderly}
-                    indeterminate={!isElderly}
-                    onChange={() => handleCheckboxChange("elderly")}
-                  >
-                    Idoso
                   </Checkbox>
                 </Checkbox.Group>
               </Form.Item>
@@ -128,8 +133,8 @@ const Home: React.FC = () => {
       >
         <ResulOnIMC
           result={resultCalcImc}
-          isElderly={isElderly}
           isFemale={isFemale}
+          age={ageInput}
           imc={imc}
         />
       </PageMode>

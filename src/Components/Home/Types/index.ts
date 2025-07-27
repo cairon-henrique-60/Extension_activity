@@ -1,8 +1,8 @@
 export interface IResultIMCProps {
   imc: number;
+  age: number;
   result: string;
   isFemale: boolean;
-  isElderly: boolean;
 }
 
 export type Result =
