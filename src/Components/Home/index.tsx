@@ -57,6 +57,7 @@ const Home: React.FC = () => {
               >
                 <Input
                   type="number"
+                  min={1}
                   placeholder="Digite seu peso"
                   prefix={<UserOutlined style={{ color: "#6a5acd" }} />}
                 />
@@ -69,6 +70,7 @@ const Home: React.FC = () => {
               >
                 <Input
                   type="number"
+                  min={1}
                   placeholder="Digite sua altura"
                   prefix={<UserOutlined style={{ color: "#6a5acd" }} />}
                 />
