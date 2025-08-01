@@ -16,11 +16,17 @@ export const useHoomeHooks = () => {
 
   const [imc, setImc] = useState<number>(0);
 
-  const calculeImmc = (params: { weight: number; height: number, age: number }): void => {
-    const { weight, height, age } = params;
-  
+  const calculeImmc = (params: {
+    weight: string;
+    height: string;
+    age: number;
+  }): void => {
+    const weight = parseFloat(params.weight.replace(",", "."));
+    const height = parseFloat(params.height.replace(",", "."));
+    const age = params.age;
+
     setAgeInput(age);
-  
+
     const result = (weight / Math.pow(height, 2)).toFixed(2);
     setImc(+result);
     handleOpenModal(true);
@@ -39,9 +45,13 @@ export const useHoomeHooks = () => {
 
   const handleFormChange = (): void => {
     const { weight, height, age } = form.getFieldsValue();
+
+    const transformWeight = parseFloat(weight?.replace?.(",", ".") || "0");
+    const transformHeight = parseFloat(height?.replace?.(",", ".") || "0");
+
     if (
-      weight > 0 &&
-      height > 0 &&
+      transformWeight > 0 &&
+      transformHeight > 0 &&
       age > 0 &&
       (isFemale || isMale)
     ) {

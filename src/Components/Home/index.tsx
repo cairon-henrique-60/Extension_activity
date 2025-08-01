@@ -66,12 +66,17 @@ const Home: React.FC = () => {
               <Form.Item
                 label="Altura"
                 name="height"
-                rules={[{ required: true, message: "Somente números!" }]}
+                rules={[
+                  { required: true, message: "Digite sua altura." },
+                  {
+                    pattern: /^[0-9]+([,.][0-9]{1,2})?$/,
+                    message: "Digite uma altura válida (ex: 1.75 ou 1,75)",
+                  },
+                ]}
               >
                 <Input
-                  type="number"
-                  min={1}
-                  placeholder="Digite sua altura"
+                  type="text"
+                  placeholder="Digite sua altura (ex: 1.75 ou 1,75)"
                   prefix={<UserOutlined style={{ color: "#6a5acd" }} />}
                 />
               </Form.Item>
